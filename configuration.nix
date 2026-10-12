@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
@@ -15,12 +15,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos";
+  networking.hostName = "laptop";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Prague";
 
-  users.users.dev = {
+  users.users.hero = {
     isNormalUser = true;
 
     extraGroups = [
@@ -32,7 +32,7 @@
 
     shell = pkgs.bashInteractive;
 
-    initialPassword = "changeme";
+    initialPassword = "password";
   };
 
   environment.systemPackages = with pkgs; [
@@ -41,37 +41,54 @@
     nano
     wget
     curl
+    niri
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
+  home-manager.users.hero = {
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
+
+    programs.noctalia = {
+      enable = true;
+
+      settings = { # This may also be a string or path to a .toml file.
+        theme = {
+          mode = "dark";
+          source = "builtin";
+          builtin = "Catppuccin";
+        };
+
+        wallpaper = {
+          enabled = true;
+          default.path = "/path/to/wallpapers/wallpaper.png";
+        };
+      };
+    };
+  };
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
   services.displayManager.sddm.enable = true;
-
   services.displayManager.sddm.wayland.enable = true;
-
-  services.displayManager.defaultSession = "hyprland";
-
+  services.displayManager.defaultSession = "niri";
   services.displayManager.autoLogin = {
     enable = true;
-    user = "dev";
+    user = "hero";
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  hardware.graphics.enable = true;
+  programs.xwayland.enable = true;
+  programs.niri.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
-
+  hardware.graphics.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
-
     powerManagement.enable = false;
-
     powerManagement.finegrained = false;
-
     open = false;
-
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 

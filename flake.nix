@@ -1,11 +1,16 @@
 {
-  description = "NixOS with Home Manager";
+  description = "Hero's nixos setup";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -25,7 +30,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.dev = import ./home/home.nix;
+            home-manager.users.hero = import ./home/home.nix;
           }
         ];
       };
