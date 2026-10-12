@@ -40,6 +40,7 @@
       nano
       wget
       curl
+      kitty
     ];
 
     services.power-profiles-daemon.enable = true;
