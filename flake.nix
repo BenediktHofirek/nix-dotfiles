@@ -2,37 +2,18 @@
   description = "Hero's nixos setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
-  {
-    nixosConfigurations.nixos =
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          ./configuration.nix
-
-          home-manager.nixosModules.home-manager
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.hero = import ./home/home.nix;
-          }
-        ];
-      };
-  };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake 
+    { inherit inputs; } 
+    { 
+      systems = [ "x86_64-linux" ]; 
+      imports = [ (inputs.import-tree ./modules) ]; 
+    };
 }
