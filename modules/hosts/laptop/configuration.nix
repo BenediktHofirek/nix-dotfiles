@@ -1,7 +1,6 @@
-{ self,  inputs, config, ... }: {
+{ self, inputs, ... }: {
 
-   flake.nixosModules.laptopConfiguration = { pkgs, lib, config, ... }: {
-
+  flake.nixosModules.laptopModule = { pkgs, lib, config, ... }: {
     imports = [
       self.nixosModules.laptopHardware
       self.nixosModules.niri
@@ -92,5 +91,9 @@
     };
 
     system.stateVersion = "26.05";
+    home-manager.users.hero = self.homeModules.heroModule;
   };
+
 }
+
+
