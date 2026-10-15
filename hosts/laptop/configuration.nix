@@ -1,20 +1,42 @@
-{ pkgs, config, username, hostname, ... }: {
+{ inputs, pkgs, config, username, hostname, ... }: {
 
   imports = [
-    ./cpu-management.nix
+    # ./cpu-management.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.stateVersion = "26.05";
 
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Prague";
+
+  services.xserver.xkb = {
+    layout = "us";
+    variant = ""; # Leave empty for standard US layout
+  };
+
+  nix = {
+    settings = {
+      auto-optimise-store = true; # Hard-link identical store files
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly"; # Runs weekly (uses systemd timer)
+      options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
+    };
+  };
+
+  # Set keyboard layout for Console / TTY (non-graphical terminal)
+  console.keyMap = "us";
 
   users.users.${username} = {
     isNormalUser = true;
@@ -28,11 +50,10 @@
 
     shell = pkgs.bashInteractive;
 
-    initialPassword = "password";
+    initialPassword = username;
   };
 
   environment.systemPackages = with pkgs; [
-    comma
     xwayland-satellite
   ];
 
@@ -77,9 +98,9 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
+    # For nh
+    FLAKE="/home/${username}/dotfiles";
   };
-
-  system.stateVersion = "26.05";
 }
 
 

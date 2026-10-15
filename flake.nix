@@ -60,8 +60,8 @@
           specialArgs = { inherit inputs hostname username; };
           modules = [
             ./hosts/${hostname}/configuration.nix
-            ./hosts/${hostname}/hardware.nix
-          ];
+          ] ++ lib.optional (builtins.pathExists ./hosts/${hostname}/hardware.nix)
+              ./hosts/${hostname}/hardware.nix;
         }
       );
 
