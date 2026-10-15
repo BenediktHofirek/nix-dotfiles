@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ self, inputs, config, ... }: {
 
   flake.homeConfigurations.hero = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
@@ -15,8 +15,34 @@
     home.homeDirectory = "/home/hero";
 
     home.packages = with pkgs; [ 
-      hello 
+      git
+      vim
+      nano
+      wget
+      curl
+
+      waybar
+      fuzzel
+
+      kitty 
+      superfile
+
+      google-chrome
+      firefox
     ];
+
+    programs.waybar.enable = true;
+    programs.fuzzel.enable = true;
+
+    xdg.configFile."niri/config.kdl".source =
+      pkgs.runCommand "niri-config-checked"
+        {
+          nativeBuildInputs = [ pkgs.niri ];
+        }
+        ''
+          niri validate --config ${./niri-config.kdl}
+          cp ${./niri-config.kdl} $out
+        '';
 
     home.stateVersion = "24.11";
   };

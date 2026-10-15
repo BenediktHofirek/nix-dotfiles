@@ -3,7 +3,6 @@
   flake.nixosModules.laptopModule = { pkgs, lib, config, ... }: {
     imports = [
       self.nixosModules.laptopHardware
-      self.nixosModules.niri
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -34,13 +33,26 @@
     };
 
     environment.systemPackages = with pkgs; [
-      git
-      vim
-      nano
-      wget
-      curl
-      kitty
+      xwayland-satellite
     ];
+
+
+    services.greetd = {
+      enable = true;
+
+      settings = {
+        default_session = {
+          command = "${config.programs.niri.package}/bin/niri-session";
+          user = "hero";
+        };
+      };
+    };
+
+    programs.niri.enable = true;
+    # Recommended by the Niri/NixOS setup:
+    # prevents a stripped systemd PATH from shadowing the PATH
+    # set up by niri-session.
+    systemd.user.services.niri.enableDefaultPath = false;
 
     services.power-profiles-daemon.enable = true;
     services.upower.enable = true;
@@ -53,7 +65,6 @@
     };
 
     programs.xwayland.enable = true;
-    programs.niri.enable = true;
 
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.graphics.enable = true;
