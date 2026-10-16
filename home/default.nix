@@ -37,5 +37,6 @@
     slurp
     slack
     wl-gammarelay-rs
+    just
   ];
 }

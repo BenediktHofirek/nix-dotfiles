@@ -11,6 +11,11 @@
 
     import-tree.url = "github:vic/import-tree";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +64,7 @@
           inherit system;
           specialArgs = { inherit inputs hostname username; };
           modules = [
+            (import-tree ./system)
             ./hosts/${hostname}/configuration.nix
           ] ++ lib.optional (builtins.pathExists ./hosts/${hostname}/hardware.nix)
               ./hosts/${hostname}/hardware.nix;
