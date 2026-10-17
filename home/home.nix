@@ -21,24 +21,29 @@
 
     # Hyprland packages
     wl-clipboard
+    waybar
+    mako
 
     # General system packages
     git
     vim
+    neovim
     nano
     wget
     curl
+
     superfile
+
+    # Apps
     google-chrome
     firefox
-    waybar
-    mako
+    slack
+
     awww
     brightnessctl
     pamixer
     grim
     slurp
-    slack
     wl-gammarelay-rs
     just
   ];

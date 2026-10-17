@@ -4,10 +4,12 @@
   programs.git = {
     enable = true;
 
-    userName = "Benedikt Hofirek";
-    userEmail = "benedikthofirek@gmail.com";
+    settings = {
+      user = {
+        name = "Benedikt Hofirek";
+        email = "benedikthofirek@gmail.com";
+      };
 
-    extraConfig = {
       init = {
         defaultBranch = "main";
       };
