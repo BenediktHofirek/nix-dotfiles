@@ -1,8 +1,10 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.tmux = {
     enable = true;
+
+    shell = config.programs.kitty.settings.shell;
 
     terminal = "tmux-256color";
     # Scrollback history

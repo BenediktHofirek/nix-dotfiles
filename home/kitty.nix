@@ -10,13 +10,12 @@
     };
 
     settings = {
+      # needs an absolute path for tmux
+      shell = "${pkgs.zsh}/bin/zsh";
+
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
-
-      # bold_font = "auto";
-      # italic_font = "auto";
-      # bold_italic_font = "auto";
 
       window_padding_width = 5;
       hide_window_decorations = true;

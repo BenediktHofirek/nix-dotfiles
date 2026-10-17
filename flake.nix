@@ -45,6 +45,9 @@
 
       flake =
         let
+          defaultUsername = "hero";
+          defaultSystem = "x86_64-linux";
+
           lib = inputs.nixpkgs.lib;
 
           hostDirs = lib.filterAttrs (n: v: v == "directory") (builtins.readDir ./hosts);
@@ -62,8 +65,8 @@
             hostname:
             let
               meta = metaFor hostname;
-              system = meta.system or "x86_64-linux";
-              username = meta.username or "hero";
+              system = meta.system or defaultSystem;
+              username = meta.username or defaultUsername;
             in
             lib.nixosSystem {
               inherit system;
@@ -80,8 +83,8 @@
             hostname:
             let
               meta = metaFor hostname;
-              system = meta.system or "x86_64-linux";
-              username = meta.username or "hero";
+              system = meta.system or defaultSystem;
+              username = meta.username or defaultUsername;
             in
             inputs.home-manager.lib.homeManagerConfiguration {
               pkgs = inputs.nixpkgs.legacyPackages.${system};
