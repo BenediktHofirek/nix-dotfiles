@@ -31,7 +31,6 @@ in
           ${startExec "wl-gammarelay-rs"}
           ${startExec "kitty"}
           ${startExec "waybar"}
-          ${startExec "hyprpaper"}
           ${startExec "mako"}
         '')
       ];
@@ -88,6 +87,12 @@ in
 
       config = {
 
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          force_default_wallpaper = 0;
+        };
+
         general = {
           layout = "dwindle";
         };
@@ -122,8 +127,8 @@ in
           active_opacity = 1.0;
           inactive_opacity = 1.0;
         };
-
       };
+
     };
   };
 }

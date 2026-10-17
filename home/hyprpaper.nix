@@ -1,11 +1,14 @@
 {
-  programs.hyprpaper = {
+  services.hyprpaper = {
     enable = true;
 
     settings = {
+      splash = false;
+      ipc = true;
+
       wallpaper = {
           monitor = "";
-          path = "../wallpapers/earth-horizon.jpg";
+          path = "${../wallpapers/stars.jpg}";
           fit_mode = "cover";
       };
     };
