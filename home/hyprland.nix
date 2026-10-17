@@ -25,10 +25,16 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
 
+    extraConfig = ''
+      env = HYPRCURSOR_THEME,"rose-pine-hyprcursor"
+      env = HYPRCURSOR_SIZE,24
+    '';
+
     settings = {
+
       on = [
         (on "hyprland.start" ''
-          ${startExec "wl-gammarelay-rs"}
+          ${startExec "wl-gammarelay-rs && busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature q 4500"}
           ${startExec "kitty"}
           ${startExec "waybar"}
           ${startExec "mako"}
