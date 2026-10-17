@@ -2,11 +2,18 @@
 let
   lua = lib.generators.mkLuaInline;
 
-  # keys are built from the Lua `mod` variable defined below
-  bind = key: action: {
+  bindCommand = key: action: {
     _args = [
-      (lua ''mod .. " + ${key}"'')
+      (lua ''commandMod .. " + ${key}"'')
       (lua action)
+    ];
+  };
+
+  bind = key: action: flags: {
+    _args = [
+      "${key}"
+      (lua action)
+      (lua (if flags == null then "{ }" else "${flags}"))
     ];
   };
 
@@ -32,9 +39,14 @@ in
 
     settings = {
 
+      commandMod = {
+        # Free: C, W, X, Y
+        _var = "SUPER+ALT+CTRL";
+      };
+
       on = [
         (on "hyprland.start" ''
-          ${startExec "wl-gammarelay-rs && busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature q 4500"}
+          ${startExec "wl-gammarelay-rs && sleep 0.1 && busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature q 5000"}
           ${startExec "kitty"}
           ${startExec "waybar"}
           ${startExec "mako"}
@@ -62,36 +74,63 @@ in
         }
       ];
 
-      mod = {
-        _var = "SUPER+ALT+CTRL";
-      };
-
       bind = [
         # launch applications
-        (bind "0" (exec "fuzzel"))
-        (bind "2" (exec "kitty"))
-        (bind "3" (exec "google-chrome"))
-        (bind "4" (exec "kitty -e superfile"))
-        (bind "R" (exec "slack"))
-        (bind "S" (exec "firefox"))
+        (bindCommand "0" (exec "fuzzel"))
+        (bindCommand "2" (exec "kitty"))
+        (bindCommand "3" (exec "google-chrome"))
+        (bindCommand "4" (exec "kitty -e superfile"))
+        (bindCommand "R" (exec "slack"))
+        (bindCommand "S" (exec "firefox"))
+        (bindCommand "T" (exec "beekeeper-studio"))
+        (bindCommand "U" (exec "podman-desktop"))
 
         # windows and focus
-        (bind "1" "hl.dsp.window.close()")
-        (bind "5" (focusdr "l"))
-        (bind "6" (focusdr "r"))
-        (bind "7" (focusdr "u"))
-        (bind "8" (focusdr "d"))
+        (bindCommand "1" "hl.dsp.window.close()")
+        (bindCommand "5" (focusdr "l"))
+        (bindCommand "6" (focusdr "r"))
+        (bindCommand "7" (focusdr "u"))
+        (bindCommand "8" (focusdr "d"))
 
         # NightShift control
-        (bind "9" (
+        (bindCommand "9" (
           exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
         ))
-        (bind "A" (
+        (bindCommand "A" (
           exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100"
         ))
+
+        # Monitors off 
+        (bindCommand "B" (exec "${../scripts/display-toggle.sh}"))
+        (bindCommand "V" (exec "systemctl suspend"))
+
+        # Screenshot
+        (bindCommand "D" (exec "hyprshot -m region"))
+
+        # Play / Pause video
+        (bindCommand "E" (exec "playerctl play-pause"))
+
+        # Bluetooth
+        (bindCommand "Q" (exec "bluetooth toggle"))
+
+        # Reboot
+        (bindCommand "B" (exec "systemctl reboot"))
+
+        # Wifi
+        (bindCommand "Z" (exec "../scripts/toggle-wifi.py"))
+
+        (bind "XF86MonBrightnessUp" (exec "${../scripts/brightnesscontrol.sh} i $(brightnessctl info | grep -oP '(?<=\()\d+(?=%)' | awk '{n=int(($1+5)/10); print (n<1)?1:n}')") "{ repeating = true; locked = true; }")
+        (bind "XF86MonBrightnessDown" (exec "${../scripts/brightnesscontrol.sh} d $(brightnessctl info | grep -oP '(?<=\()\d+(?=%)' | awk '{n=int(($1+5)/10); print (n<1)?1:n}')") "{ repeating = true; locked = true; }")
+
+        (bind "XF86AudioRaiseVolume" (exec "${../scripts/volumecontrol.sh} -o i") "{ repeating = true; locked = true; }")
+        (bind "XF86AudioLowerVolume" (exec "${../scripts/volumecontrol.sh} -o d") "{ repeating = true; locked = true; }")
       ];
 
       config = {
+
+        animations = {
+          enabled = false;
+        };
 
         misc = {
           disable_hyprland_logo = true;

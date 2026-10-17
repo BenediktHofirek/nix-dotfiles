@@ -8,11 +8,6 @@
     colloid-icon-theme
   ];
 
-  # 2. Set environment variables so launchers and DEs find user icons
-  home.sessionVariables = {
-    XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS";
-  };
-
   # 3. Configure GTK Apps (GTK2, GTK3, GTK4)
   gtk = {
     enable = true;

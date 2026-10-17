@@ -16,6 +16,8 @@
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
+  services.playerctld.enable = true;
+
   home.packages = with pkgs; [
     # Nix packages
     comma
@@ -67,20 +69,34 @@
     perl
     php
     go
-    python3
     lua
     gcc
     nodejs
+    python3
+    uv
 
     # Apps
     google-chrome
     firefox
     slack
+    podman-desktop
 
+    podman
+    plover
     brightnessctl
     pamixer
     grim
     slurp
     wl-gammarelay-rs
   ];
+
+  home.sessionVariables = {
+    # Combine Nix profile (icons), system/user Flatpak paths (fuzzel)
+    XDG_DATA_DIRS = ''
+      $HOME/.nix-profile/share:\
+      $XDG_DATA_DIRS:\
+      /var/lib/flatpak/exports/share:\
+      $HOME/.local/share/flatpak/exports/share:\
+    '';
+  };
 }
