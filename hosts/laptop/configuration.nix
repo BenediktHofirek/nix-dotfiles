@@ -63,7 +63,7 @@
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.defaultSession = "hyprland";
   services.displayManager.autoLogin = {
-    enable = false;
+    enable = true;
     user = username;
   };
 

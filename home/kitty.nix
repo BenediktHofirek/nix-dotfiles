@@ -14,6 +14,10 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
+      # bold_font = "auto";
+      # italic_font = "auto";
+      # bold_italic_font = "auto";
+
       window_padding_width = 5;
       hide_window_decorations = true;
       background_opacity = 1.0;
@@ -24,6 +28,8 @@
       allow_hyperlinks = true;
       paste_actions = "quote-urls-at-prompt";
       enable_audio_bell = false;
+      # Makes all the difference on light background
+      text_composition_strategy = "legacy";
 
       # Max number of lines in the output
       scrollback_lines = -1;

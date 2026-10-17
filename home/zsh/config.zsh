@@ -9,6 +9,9 @@ fi
 alias j='jj'
 alias jw="watch -n 0.5 -t --color 'jj --ignore-working-copy log -n 20 --color=always'"
 
+# Aliases
+alias e='eza'
+
 if [[ -n "$TMUX" ]]; then
   alias t="nvim -c ':terminal'"
 else
