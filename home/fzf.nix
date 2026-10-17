@@ -16,4 +16,3 @@
     changeDirWidget.command = "fd --type d --hidden --follow --exclude .git --exclude node_modules --exclude .direnv --exclude result";
   };
 }
-

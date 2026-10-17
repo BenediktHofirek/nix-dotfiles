@@ -46,7 +46,7 @@
     };
   };
 
-  home.packages = with pkgs;  [
+  home.packages = with pkgs; [
     kitty-themes
   ];
 }

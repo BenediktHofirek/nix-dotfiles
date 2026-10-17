@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 
 {
   powerManagement = {
@@ -9,19 +9,19 @@
   # 2. Intel Undervolt Service Configuration
   services.undervolt = {
     enable = true;
-    coreOffset = 0;       # CPU & CPU Cache
-    gpuOffset = 0;        # GPU
-    uncoreOffset = 0;     # System Agent / Uncore
-    analogioOffset = 0;   # Analog I/O
+    coreOffset = 0; # CPU & CPU Cache
+    gpuOffset = 0; # GPU
+    uncoreOffset = 0; # System Agent / Uncore
+    analogioOffset = 0; # Analog I/O
     p2 = {
       limit = 100;
-      window = 0.002;     # Short power limit window
+      window = 0.002; # Short power limit window
     };
     p1 = {
       limit = 85;
-      window = 28.0;      # Long power limit window
+      window = 28.0; # Long power limit window
     };
-    temp = -20;           # Critical Temperature Offset
+    temp = -20; # Critical Temperature Offset
   };
 
   # 3. Declarative Systemd Service for Uncore Caps & EPP Tuning

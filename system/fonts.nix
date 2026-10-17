@@ -18,8 +18,8 @@
       defaultFonts = {
         monospace = [ "CaskaydiaCove Nerd Font Mono" ];
         sansSerif = [ "Inter" ];
-        serif     = [ "Liberation Serif" ];
-        emoji     = [ "Noto Color Emoji" ];
+        serif = [ "Liberation Serif" ];
+        emoji = [ "Noto Color Emoji" ];
       };
       antialias = true;
       hinting = {

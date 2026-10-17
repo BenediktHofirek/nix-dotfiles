@@ -13,7 +13,7 @@ let
   on = event: body: {
     _args = [
       event
-      (lua ''function() ${body} end'')
+      (lua "function() ${body} end")
     ];
   };
 
@@ -27,21 +27,34 @@ in
 
     settings = {
       on = [
-        (
-          on "hyprland.start" ''
-            ${startExec "wl-gammarelay-rs"}
-            ${startExec "kitty"}
-            ${startExec "waybar"}
-            ${startExec "awww-daemon"}
-            ${startExec "mako"}
-          ''
-        )
+        (on "hyprland.start" ''
+          ${startExec "wl-gammarelay-rs"}
+          ${startExec "kitty"}
+          ${startExec "waybar"}
+          ${startExec "hyprpaper"}
+          ${startExec "mako"}
+        '')
       ];
 
       monitor = [
-        { output = "eDP-2";    mode = "2560x1600@60";    position = "auto";      scale = 1.33; }
-        { output = "HDMI-A-1"; mode = "3840x2560@49.98"; position = "2560x0";    scale = 1.6; }
-        { output = "DP-1";     mode = "2560x1600@60";    position = "2960x1600"; scale = 1.6; }
+        {
+          output = "eDP-2";
+          mode = "2560x1600@60";
+          position = "auto";
+          scale = 1.33;
+        }
+        {
+          output = "HDMI-A-1";
+          mode = "3840x2560@49.98";
+          position = "2560x0";
+          scale = 1.6;
+        }
+        {
+          output = "DP-1";
+          mode = "2560x1600@60";
+          position = "2960x1600";
+          scale = 1.6;
+        }
       ];
 
       mod = {
@@ -65,8 +78,12 @@ in
         (bind "8" (focusdr "d"))
 
         # NightShift control
-        (bind "9" (exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"))
-        (bind "A" (exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100"))
+        (bind "9" (
+          exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100"
+        ))
+        (bind "A" (
+          exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100"
+        ))
       ];
 
       config = {

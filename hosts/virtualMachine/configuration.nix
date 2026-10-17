@@ -1,6 +1,13 @@
-{ inputs, username, hostname, lib, ... }: {
+{
+  inputs,
+  username,
+  hostname,
+  lib,
+  ...
+}:
+{
   imports = [
-    ../laptop/configuration.nix            # reuse the whole laptop system
+    ../laptop/configuration.nix # reuse the whole laptop system
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -26,7 +33,11 @@
         "-display gtk,gl=on"
       ];
       forwardPorts = [
-        { from = "host"; host.port = 2222; guest.port = 22; }
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
       ];
     };
   };

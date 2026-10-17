@@ -20,4 +20,3 @@
     initContent = builtins.readFile ./config.zsh;
   };
 }
-

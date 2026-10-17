@@ -1,8 +1,15 @@
-{ inputs, pkgs, config, username, hostname, ... }: 
+{
+  inputs,
+  pkgs,
+  config,
+  username,
+  hostname,
+  ...
+}:
 
 let
   home = config.users.users."${username}".home;
-  keyFile =  "${home}/.config/sops/age/keys.txt";
+  keyFile = "${home}/.config/sops/age/keys.txt";
 in
 {
 
@@ -41,6 +48,3 @@ in
     SOPS_AGE_KEY_FILE = keyFile;
   };
 }
-
-
-

@@ -1,4 +1,12 @@
-{ inputs, pkgs, config, username, hostname, ... }: {
+{
+  inputs,
+  pkgs,
+  config,
+  username,
+  hostname,
+  ...
+}:
+{
 
   imports = [
     # ./cpu-management.nix
@@ -25,7 +33,10 @@
   nix = {
     settings = {
       auto-optimise-store = true; # Hard-link identical store files
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
 
     gc = {
@@ -99,8 +110,6 @@
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
     # For nh
-    FLAKE="/home/${username}/dotfiles";
+    FLAKE = "/home/${username}/dotfiles";
   };
 }
-
-

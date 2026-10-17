@@ -1,20 +1,22 @@
-{ inputs, pkgs, username, ... }: {
+{
+  inputs,
+  pkgs,
+  username,
+  ...
+}:
+{
   nixpkgs.config.allowUnfree = true;
 
   programs.home-manager.enable = true;
 
   home.username = username;
-  home.homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
+  home.homeDirectory =
+    if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
   home.stateVersion = "26.05";
-
-  programs.bash = {
-    enable = true;
-    shellAliases.ll = "ls -l";
-  };
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     # Nix packages
     comma
     nix-output-monitor
@@ -75,7 +77,6 @@
     firefox
     slack
 
-    awww
     brightnessctl
     pamixer
     grim
