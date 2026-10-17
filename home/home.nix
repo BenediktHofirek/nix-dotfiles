@@ -13,12 +13,16 @@
   };
 
   home.packages = with pkgs; [ 
-    # Nix utils
+    # Nix packages
     comma
     nix-output-monitor
     nixfmt
     nh
 
+    # Hyprland packages
+    wl-clipboard
+
+    # General system packages
     git
     vim
     nano
@@ -30,7 +34,6 @@
     waybar
     mako
     awww
-    wl-clipboard
     brightnessctl
     pamixer
     grim
