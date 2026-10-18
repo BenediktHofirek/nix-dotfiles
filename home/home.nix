@@ -31,6 +31,8 @@
     # Hyprland packages
     wl-clipboard
     waybar
+    hyprpicker
+    hyprlauncher
     mako
 
     # General system packages
@@ -40,6 +42,11 @@
     nano
     wget
     curl
+
+    # Terminal db client
+    rainfrog
+    harlequin
+    dblab
 
     # Shell enhancement
     bat
@@ -88,6 +95,7 @@
     grim
     slurp
     wl-gammarelay-rs
+
   ];
 
   home.sessionVariables = {

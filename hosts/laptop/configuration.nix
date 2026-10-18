@@ -70,11 +70,9 @@
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
   services.displayManager.defaultSession = "hyprland";
   services.displayManager.autoLogin = {
-    enable = true;
+    enable = false;
     user = username;
   };
 
