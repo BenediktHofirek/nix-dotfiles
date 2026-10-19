@@ -26,7 +26,6 @@
     nix-diff
     nixfmt
     nixd
-    nh
 
     # Hyprland packages
     wl-clipboard

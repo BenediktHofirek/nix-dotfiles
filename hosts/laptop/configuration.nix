@@ -43,11 +43,12 @@
       ];
     };
 
-    gc = {
-      automatic = true;
-      dates = "weekly"; # Runs weekly (uses systemd timer)
-      options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
-    };
+    # GC handled with nh
+    # gc = {
+    #  automatic = true;
+    #  dates = "weekly"; # Runs weekly (uses systemd timer)
+    #  options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
+    #};
   };
 
   # Set keyboard layout for Console / TTY (non-graphical terminal)
@@ -111,7 +112,5 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
-    # For nh
-    FLAKE = "/home/${username}/dotfiles";
   };
 }

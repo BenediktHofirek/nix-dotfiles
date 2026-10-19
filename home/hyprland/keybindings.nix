@@ -2,9 +2,9 @@
 let
   lua = lib.generators.mkLuaInline;
 
-  display2Bus = 2;
-  display3Bus = 1;
-  display4Bus = 15;
+  display2Bus = 16;
+  display3Bus = 15;
+  display4Bus = 0;
 
   # Free: C, W, X, Y
   commandMod = "SUPER+ALT+CTRL";
