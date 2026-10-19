@@ -20,6 +20,10 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernelModules = [
+    "i2c-dev"
+  ];
+
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
 

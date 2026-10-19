@@ -16,7 +16,7 @@ in
 
       on = [
         (on "hyprland.start" ''
-          ${startExec "wl-gammarelay-rs && sleep 0.1 && busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature q 5000"}
+          ${startExec "wl-gammarelay-rs && sleep 1 && busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature q 5000"}
           ${startExec "kitty"}
           ${startExec "dunst"}
         '')
