@@ -19,6 +19,10 @@
     ];
   };
 
+  services.displayManager.autoLogin = {
+    enable = lib.mkForce true;
+  };
+
   virtualisation.vmVariant = {
     services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
 

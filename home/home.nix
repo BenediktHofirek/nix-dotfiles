@@ -34,6 +34,7 @@
     hyprlauncher
     libnotify
     ddcutil
+    pavucontrol
 
     # General system packages
     git
@@ -86,6 +87,7 @@
     firefox
     slack
     podman-desktop
+    vscode
 
     podman
     plover

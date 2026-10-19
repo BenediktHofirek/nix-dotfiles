@@ -5,13 +5,6 @@ else
   export EDITOR='nvim'
 fi
 
-# Jujutsu
-alias j='jj'
-alias jw="watch -n 0.5 -t --color 'jj --ignore-working-copy log -n 20 --color=always'"
-
-# Aliases
-alias e='eza'
-
 if [[ -n "$TMUX" ]]; then
   alias t="nvim -c ':terminal'"
 else
@@ -35,3 +28,29 @@ if [[ -o interactive && -z "$TMUX" ]]; then
   tmux -S "/tmp/tmux-$$.sock"
 fi
 
+# Clipboard - shouldn't be needed, everything should be handled inside tmux
+# yank (y{motion}) in vi normal mode also goes to the system clipboard
+#_vi_yank_clip() { zle vi-yank; print -rn -- "$CUTBUFFER" | wl-copy }
+#zle -N _vi_yank_clip
+#bindkey -M vicmd 'y' _vi_yank_clip
+
+# copy the whole current command line
+_copy_line() { print -rn -- "$BUFFER" | wl-copy; zle -M "copied" }
+#zle -N _copy_line
+#bindkey '^Y' _copy_line          # emacs/viins; adjust key to taste
+#bindkey -M viins '^Y' _copy_line
+
+# paste from the system clipboard at the cursor
+#_paste_clip() { LBUFFER+="$(wl-paste --no-newline)" }
+#zle -N _paste_clip
+#bindkey -M viins '^[v' _paste_clip   # Alt+v
+#bindkey -M vicmd 'p' _paste_clip
+
+# Aliases
+
+# Jujutsu
+alias j='jj'
+alias jw="watch -n 0.5 -t --color 'jj --ignore-working-copy log -n 20 --color=always'"
+
+# Eza
+alias e='eza'

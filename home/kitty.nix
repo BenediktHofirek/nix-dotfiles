@@ -9,6 +9,11 @@
       size = 16.5;
     };
 
+    shellIntegration = {
+      mode = "no-rc no-cursor";
+      enableZshIntegration = true;
+    };
+
     settings = {
       # needs an absolute path for tmux
       shell = "${pkgs.zsh}/bin/zsh";
@@ -23,12 +28,15 @@
       confirm_os_window_close = 0;
       allow_remote_control = false;
       notify_on_cmd_finish = "invisible 20";
-      shell_integration = "enabled";
       allow_hyperlinks = true;
       paste_actions = "quote-urls-at-prompt";
       enable_audio_bell = false;
       # Makes all the difference on light background
       text_composition_strategy = "legacy";
+      cursor_shape = "block";
+      cursor_shape_unfocused = "hollow";
+      cursor_blink_interval = 0;
+      clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
 
       # Max number of lines in the output
       scrollback_lines = -1;
