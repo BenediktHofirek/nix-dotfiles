@@ -1,9 +1,8 @@
 {
   programs.fzf = {
     enable = true;
-    # Conflict with atuin over ctrl+r
-    enableZshIntegration = false;
-    enableBashIntegration = false;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
 
     defaultOptions = [
       "--height 40%"

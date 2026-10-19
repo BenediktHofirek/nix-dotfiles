@@ -62,6 +62,7 @@
       "networkmanager"
       "video"
       "audio"
+      "i2c"
     ];
 
     shell = pkgs.bashInteractive;
@@ -94,6 +95,7 @@
   };
 
   hardware.bluetooth.enable = true;
+  hardware.i2c.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics.enable = true;

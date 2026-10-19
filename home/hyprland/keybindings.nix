@@ -57,7 +57,7 @@ in
           exec "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100"
         ))
 
-        # Monitors off 
+        # Monitors off
         (bindCommand "B" (exec "${../../scripts/display-toggle.sh}"))
         (bindCommand "V" (exec "systemctl suspend"))
 
@@ -77,12 +77,20 @@ in
         (bindCommand "Z" (exec "${../../scripts/toggle-wifi.py}"))
 
         # Volume
-        (bind "XF86AudioRaiseVolume" (exec "${../../scripts/volumecontrol.sh} -o i") "{ repeating = true; locked = true; }")
-        (bind "XF86AudioLowerVolume" (exec "${../../scripts/volumecontrol.sh} -o d") "{ repeating = true; locked = true; }")
+        (bind "XF86AudioRaiseVolume" (exec "${../../scripts/volumecontrol.sh} -o i")
+          "{ repeating = true; locked = true; }"
+        )
+        (bind "XF86AudioLowerVolume" (exec "${../../scripts/volumecontrol.sh} -o d")
+          "{ repeating = true; locked = true; }"
+        )
 
         # Brightness
-        (bind "XF86MonBrightnessUp" (exec "${../../scripts/brightnesscontrol.sh} i $(brightnessctl info | grep -oP '(?<=\()\d+(?=%)' | awk '{n=int(($1+5)/10); print (n<1)?1:n}')") "{ repeating = true; locked = true; }")
-        (bind "XF86MonBrightnessDown" (exec "${../../scripts/brightnesscontrol.sh} d $(brightnessctl info | grep -oP '(?<=\()\d+(?=%)' | awk '{n=int(($1+5)/10); print (n<1)?1:n}')") "{ repeating = true; locked = true; }")
+        (bind "XF86MonBrightnessUp" (exec "brightnessctl set 2%+")
+          "{ repeating = true; locked = true; }"
+        )
+        (bind "XF86MonBrightnessDown" (exec "brightnessctl set 2%-")
+          "{ repeating = true; locked = true; }"
+        )
 
         # display 2
         (bindCommand "G" (exec "ddcutil --bus ${toString display2Bus} setvcp 10 + 1")) # increase brightness

@@ -7,9 +7,9 @@
       ipc = true;
 
       wallpaper = {
-          monitor = "";
-          path = "${../wallpapers/stars.jpg}";
-          fit_mode = "cover";
+        monitor = "";
+        path = "${../wallpapers/stars.jpg}";
+        fit_mode = "cover";
       };
     };
   };
