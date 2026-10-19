@@ -11,7 +11,6 @@ hl.config({
     misc = {
         disable_hyprland_logo = true,
         disable_splash_rendering = true,
-        force_default_wallpaper = 0,
     },
 
     general = {
@@ -35,6 +34,13 @@ hl.config({
     cursor = {
         enable_hyprcursor = true,
         no_hardware_cursors = 0,
+    },
+
+    input = {
+      repeat_rate  = 50,
+      repeat_delay = 250,
+      sensitivity  = -0.4,
+      accel_profile = "adaptive",
     },
 
     decoration = {

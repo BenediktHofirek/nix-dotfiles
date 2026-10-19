@@ -1,4 +1,8 @@
 hl.on("hyprland.start", function()
+    -- Hyprland utilities are managed manually
+    hl.exec_cmd("systemctl --user start hyprpaper.service")
+    hl.exec_cmd("waybar")
+
     -- Start the gamma relay.
     hl.exec_cmd("wl-gammarelay-rs")
 
@@ -6,7 +10,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd(
         "sh -c 'until busctl --user status " ..
         "rs.wl-gammarelay >/dev/null 2>&1; " ..
-        "do sleep 0.1; done; " ..
+        "do sleep 0.5; done; " ..
         "busctl --user set-property rs.wl-gammarelay / " ..
         "rs.wl.gammarelay Temperature q 5000'"
     )
@@ -14,5 +18,6 @@ hl.on("hyprland.start", function()
     -- Other startup applications.
     hl.exec_cmd("dunst")
     hl.exec_cmd("kitty")
+
 end)
 

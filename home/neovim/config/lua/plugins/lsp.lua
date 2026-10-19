@@ -51,15 +51,7 @@ return {
       phpactor = {},
       phpstan = {},
       pint = {},
-      duster = {},
       tlint = {},
-
-      -- Kotlin
-      kotlin_lsp = {},
-
-      -- Ruby
-      solargraph = {},
-      rubocop = {},
 
       -- Lua
       lua_ls = {
@@ -149,7 +141,6 @@ return {
       graphql = {},
 
       -- C# / .NET
-      csharpier = {},
       netcoredbg = {},
       omnisharp = {
         organize_imports_on_format = true,

@@ -28,7 +28,7 @@
     nixfmt
     nixd
 
-    # Hyprland packages
+    # Hyprland + utils
     wl-clipboard
     waybar
     hyprpicker
@@ -36,6 +36,8 @@
     libnotify
     ddcutil
     pavucontrol
+    hyprshot
+    hyprpaper
 
     # General system packages
     git
@@ -100,6 +102,7 @@
   ];
 
   home.sessionVariables = {
+    HYPRSHOT_DIR = "~/shots";
     HOSTNAME = hostname;
     # Combine Nix profile (icons), system/user Flatpak paths (fuzzel)
     XDG_DATA_DIRS = ''

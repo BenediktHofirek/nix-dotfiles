@@ -176,8 +176,6 @@ return {
       }
     end,
   },
-  -- http client
-  { 'mistweaverco/kulala.nvim' },
 
   -- Cmp
   { 'hrsh7th/cmp-buffer' }, -- buffer completions
