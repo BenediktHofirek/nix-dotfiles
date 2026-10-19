@@ -35,7 +35,7 @@ fi
 #bindkey -M vicmd 'y' _vi_yank_clip
 
 # copy the whole current command line
-_copy_line() { print -rn -- "$BUFFER" | wl-copy; zle -M "copied" }
+#_copy_line() { print -rn -- "$BUFFER" | wl-copy; zle -M "copied" }
 #zle -N _copy_line
 #bindkey '^Y' _copy_line          # emacs/viins; adjust key to taste
 #bindkey -M viins '^Y' _copy_line
@@ -54,3 +54,7 @@ alias jw="watch -n 0.5 -t --color 'jj --ignore-working-copy log -n 20 --color=al
 
 # Eza
 alias e='eza'
+
+# NixOS and Home Manager rebuilds
+alias ns='sudo nixos-rebuild switch --flake ~/dotfiles#$HOSTNAME'
+alias hs='home-manager switch --flake ~/dotfiles#$HOSTNAME'

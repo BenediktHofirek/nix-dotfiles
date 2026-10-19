@@ -1,0 +1,5 @@
+require("./config/constants")
+require("./config/settings")
+require("./config/monitors")
+require("./config/keybinds")
+require("./config/autostart")
