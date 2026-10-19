@@ -57,7 +57,6 @@
     bottom
     watchexec
     hyperfine
-    atuin
     tokei
     tealdeer
     dust
