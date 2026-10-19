@@ -33,7 +33,7 @@
     waybar
     hyprpicker
     hyprlauncher
-    mako
+    libnotify
 
     # General system packages
     git
