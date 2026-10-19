@@ -23,7 +23,8 @@ if [[ -o interactive ]]; then
   fi
 fi
 
-# Automatically start tmux outside an existing tmux session.
+# Automatically start tmux outside an existing tmux session
+# to have separate session for each terminal window
 if [[ -o interactive && -z "$TMUX" ]]; then
   tmux -S "/tmp/tmux-$$.sock"
 fi
@@ -54,6 +55,9 @@ alias jw="watch -n 0.5 -t --color 'jj --ignore-working-copy log -n 20 --color=al
 
 # Eza
 alias e='eza'
+
+# Nvim
+alias n='nvim'
 
 # NixOS and Home Manager rebuilds
 alias ns='sudo nixos-rebuild switch --flake ~/dotfiles#$HOSTNAME'

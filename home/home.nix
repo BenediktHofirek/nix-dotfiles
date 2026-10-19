@@ -40,7 +40,6 @@
     # General system packages
     git
     vim
-    neovim
     nano
     wget
     curl
