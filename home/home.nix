@@ -34,6 +34,7 @@
     hyprpicker
     hyprlauncher
     libnotify
+    ddcutil
 
     # General system packages
     git
