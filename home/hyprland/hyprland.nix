@@ -6,7 +6,11 @@
 # we need not to replace whole hypr directory, but just to symlink hyprland.lua
 {
   wayland.windowManager.hyprland = {
+    # Leave installation and session handling on NixOS
     enable = true;
+    package = null;
+    portalPackage = null;
+    systemd.enable = false;
   };
 
   xdg.configFile = {
