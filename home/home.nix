@@ -36,8 +36,6 @@
     libnotify
     ddcutil
     pavucontrol
-    hyprshot
-    hyprpaper
 
     # Bluetooth
     blueman
@@ -152,7 +150,6 @@
   ];
 
   home.sessionVariables = {
-    HYPRSHOT_DIR = "~/shots";
     HOSTNAME = hostname;
     # Combine Nix profile (icons), system/user Flatpak paths (fuzzel)
     XDG_DATA_DIRS = ''

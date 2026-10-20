@@ -67,18 +67,18 @@
     xwayland-satellite
   ];
 
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
-  services.displayManager.defaultSession = "hyprland";
+  services.displayManager.defaultSession = "hyprland-uwsm";
   services.displayManager.autoLogin = {
     enable = false;
     user = username;
-  };
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true; # recommended for most users
-    xwayland.enable = true;
   };
 
   # Screensharing, notifications

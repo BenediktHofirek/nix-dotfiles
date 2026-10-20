@@ -19,19 +19,6 @@
 
     "hypr/hyprland-config".source =
       config.lib.file.mkOutOfStoreSymlink ./hyprland-config;
-
-
-    # Hyprpaper won't start properly after changing config to lua symlink, so using custom solution
-    "hypr/hyprpaper.conf".text = ''
-      splash = false
-      ipc = true
-
-      wallpaper {
-        monitor =
-        path = ${../../wallpapers/stars.jpg}
-        fit_mode = cover
-      }
-    '';
   };
 
 }

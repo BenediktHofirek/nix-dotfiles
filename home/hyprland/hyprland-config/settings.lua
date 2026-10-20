@@ -37,9 +37,9 @@ hl.config({
     },
 
     input = {
-      repeat_rate  = 50,
-      repeat_delay = 250,
-      sensitivity  = -0.4,
+      repeat_rate  = 65,
+      repeat_delay = 200,
+      sensitivity  = -0.35,
       accel_profile = "adaptive",
     },
 

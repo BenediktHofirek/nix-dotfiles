@@ -1,8 +1,4 @@
 hl.on("hyprland.start", function()
-    -- Hyprland utilities are managed manually
-    hl.exec_cmd("systemctl --user start hyprpaper.service")
-    hl.exec_cmd("waybar")
-
     -- Start the gamma relay.
     hl.exec_cmd("wl-gammarelay-rs")
 
