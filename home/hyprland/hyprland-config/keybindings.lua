@@ -84,8 +84,9 @@ bind_command(
 )
 
 -- Scripts
-
-local scripts = "./scripts"
+local info = debug.getinfo(1, "S").source:sub(2)  -- path of this file
+local dir  = info:match("(.*/)") or "./"
+local scripts = dir .. "scripts"
 
 bind_command("B", exec(scripts .. "/display-toggle.sh"))
 bind_command("V", exec("systemctl suspend"))

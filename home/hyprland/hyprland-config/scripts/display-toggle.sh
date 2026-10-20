@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 STATE_FILE="/tmp/dpms_state.txt"
 
@@ -10,12 +10,12 @@ fi
 CURRENT_STATE=$(cat "$STATE_FILE")
 
 if [ "$CURRENT_STATE" -eq 1 ]; then
-    hyprctl dispatch dpms off
+    hyprctl dispatch "hl.dsp.dpms({ action = 'off' })"
     # $FAN_OFF_COMMAND &
     echo "0" > "$STATE_FILE"
 else
     # default for recovery if state file corrupted or something else has happened
-    hyprctl dispatch dpms on
+    hyprctl dispatch "hl.dsp.dpms({ action = 'on' })"
     echo "1" > "$STATE_FILE"
 fi
 

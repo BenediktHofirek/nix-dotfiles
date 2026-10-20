@@ -36,14 +36,14 @@ hl.config({
 
     cursor = {
         enable_hyprcursor = true,
-        no_hardware_cursors = 0,
+        no_hardware_cursors = 1,
     },
 
     input = {
       repeat_rate  = 60,
       repeat_delay = 250,
       sensitivity  = -0.35,
-      accel_profile = "flat",
+      accel_profile = "adaptive",
     },
 
     decoration = {

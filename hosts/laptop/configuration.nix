@@ -7,15 +7,19 @@
   imports = [ ./cpu-management.nix ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
+
   hardware.nvidia = {
+    nvidiaSettings = true;
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = false;  # only valid with offload mode
+    open = true;                          # fine for Ada (RTX 40xx)
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
     prime = {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
+      sync.enable = true;
     };
   };
 }

@@ -60,6 +60,8 @@
     jq
     yq-go
     bottom
+    gtop
+    nvitop
     watchexec
     hyperfine
     tokei
