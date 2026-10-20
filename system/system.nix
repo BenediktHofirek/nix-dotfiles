@@ -87,7 +87,10 @@
     extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
   hardware.i2c.enable = true;
   hardware.graphics.enable = true;
 

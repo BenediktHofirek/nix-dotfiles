@@ -39,6 +39,10 @@
     hyprshot
     hyprpaper
 
+    # Bluetooth
+    blueman
+    bluetui
+
     # General system packages
     git
     vim
@@ -125,7 +129,7 @@
     graphql-language-service-cli
 
     # Docker
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     docker-compose-language-service
 
     # Shell / data

@@ -95,7 +95,7 @@ bind_command("N", exec("systemctl reboot"))
 
 bind_command("D", exec("hyprshot -m region"))
 bind_command("E", exec("playerctl play-pause"))
-bind_command("Q", exec("bluetooth toggle"))
+bind_command("Q", exec("rfkill toggle bluetooth"))
 bind_command("Z", exec(scripts .. "/toggle-wifi.py"))
 
 -- Volume
