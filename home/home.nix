@@ -62,6 +62,8 @@
     bottom
     gtop
     nvitop
+    htop
+    btop
     watchexec
     hyperfine
     tokei
@@ -75,6 +77,8 @@
     gnumake
     man-pages
     tree
+    direnv
+    nix-direnv
 
     # Apps
     google-chrome
@@ -82,6 +86,7 @@
     slack
     podman-desktop
     vscode
+    kdePackages.dolphin
 
     podman
     plover

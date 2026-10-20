@@ -32,9 +32,6 @@
   outputs =
     inputs@{ flake-parts, import-tree, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.home-manager.flakeModules.home-manager
-      ];
 
       systems = [
         "x86_64-linux"
@@ -80,21 +77,27 @@
             }
           );
 
-          homeConfigurations = lib.genAttrs hostNames (
-            hostname:
-            let
-              meta = metaFor hostname;
-              system = meta.system or defaultSystem;
-              username = meta.username or defaultUsername;
-            in
-            inputs.home-manager.lib.homeManagerConfiguration {
-              pkgs = inputs.nixpkgs.legacyPackages.${system};
-              extraSpecialArgs = { inherit inputs hostname username; };
-              modules = [
-                (import-tree ./home)
-              ]
-              ++ lib.optional (builtins.pathExists ./hosts/${hostname}/home.nix) ./hosts/${hostname}/home.nix;
-            }
+          homeConfigurations = lib.listToAttrs (
+            map (
+              hostname:
+              let
+                meta = metaFor hostname;
+                system = meta.system or defaultSystem;
+                username = meta.username or defaultUsername;
+              in
+              {
+                # Need to include username for nh inference to work properly
+                name = "${username}@${hostname}";
+                value = inputs.home-manager.lib.homeManagerConfiguration {
+                  pkgs = inputs.nixpkgs.legacyPackages.${system};
+                  extraSpecialArgs = { inherit inputs hostname username; };
+                  modules = [
+                    (import-tree ./home)
+                  ]
+                  ++ lib.optional (builtins.pathExists ./hosts/${hostname}/home.nix) ./hosts/${hostname}/home.nix;
+                };
+              }
+            ) hostNames
           );
         };
     };

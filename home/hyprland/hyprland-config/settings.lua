@@ -62,3 +62,10 @@ hl.config({
     },
 })
 
+
+hl.window_rule({
+  float = true,
+  match = {
+      class = "^org%.kde%.dolphin$",
+  },
+})

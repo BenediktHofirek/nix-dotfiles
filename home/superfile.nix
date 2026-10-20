@@ -1,9 +1,16 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.superfile
-  ];
+  programs.superfile = {
+    enable = true;
+    settings = {
+      theme = "catppuccin-latte";
+      nerdfont = true;
+      ignore_missing_fields = true;
+      editor = "nvim";
+    };
+
+  };
 
   xdg.desktopEntries.superfile = {
     name = "Superfile";
