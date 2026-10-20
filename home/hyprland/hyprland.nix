@@ -19,6 +19,13 @@
 
     "hypr/hyprland-config".source =
       config.lib.file.mkOutOfStoreSymlink ./hyprland-config;
+
+    # Ensure xdg-desktop-portal-hyprland has its config file set up:
+    "hypr/xdph.conf".text = ''
+      screencopy {
+        allow_token_by_default = true
+      }
+    '';
   };
 
 }

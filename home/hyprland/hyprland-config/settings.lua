@@ -14,6 +14,9 @@ hl.config({
     },
 
     general = {
+        border_size = 0,
+        gaps_in = 0,
+        gaps_out = 0,
         layout = "dwindle",
     },
 
@@ -37,10 +40,10 @@ hl.config({
     },
 
     input = {
-      repeat_rate  = 65,
-      repeat_delay = 200,
+      repeat_rate  = 60,
+      repeat_delay = 250,
       sensitivity  = -0.35,
-      accel_profile = "adaptive",
+      accel_profile = "flat",
     },
 
     decoration = {
