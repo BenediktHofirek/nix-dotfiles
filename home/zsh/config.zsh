@@ -47,6 +47,10 @@ fi
 #bindkey -M viins '^[v' _paste_clip   # Alt+v
 #bindkey -M vicmd 'p' _paste_clip
 
+# Bind up-arrow key to trigger Atuin inside tmux popup as well
+bindkey '^[[A' _atuin_search_widget
+bindkey '^[OA' _atuin_search_widget
+
 # Aliases
 
 # Jujutsu

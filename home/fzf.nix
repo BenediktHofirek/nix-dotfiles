@@ -4,6 +4,9 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
 
+    # Let Ctrl+R to be handled by atuin
+    historyWidget.command = "";
+
     defaultOptions = [
       "--height 40%"
       "--layout=reverse"
