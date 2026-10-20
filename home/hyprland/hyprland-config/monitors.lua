@@ -1,33 +1,14 @@
 local constants = require("constants")
 
--- Monitor layout
-
--- Asus portable (left)
-hl.monitor({
-    output = "DP-1",
-    mode = "2560x1600@60",
-    position = "0x600",
-    scale = 1.6,
-})
-
--- Huawei (center)
-hl.monitor({
-    output = "HDMI-A-1",
-    mode = "3840x2560@49.98",
-    position = "1600x0",
-    scale = 1.6,
-})
-
--- Built-in screen (right)
-hl.monitor({
-    output = "eDP-2",
-    mode = "2560x1600@60",
-    position = "4000x400",
-    scale = 1.333333,
-})
-
 -- Bind workspaces to their respective monitors.
 for display_number, display in pairs(constants.displays) do
+    hl.monitor({
+        output = display.output,
+        mode = display.mode,
+        position =display.position,
+        scale = display.scale,
+    })
+
     for i = 1, 9 do
         hl.workspace_rule({
             workspace = tostring(i + display_number * 10),

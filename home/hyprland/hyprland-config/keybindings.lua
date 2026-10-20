@@ -133,7 +133,7 @@ end
 
 setup_ddc_brightness(2, "G", "F")
 setup_ddc_brightness(3, "I", "H")
-setup_ddc_brightness(4, "P", "O")
+-- setup_ddc_brightness(4, "P", "O")
 
 
 -- Workspace switching and window movement

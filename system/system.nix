@@ -90,6 +90,18 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
+
+    settings = {
+      General = {
+        # Lets headphones reconnect on their own, plus battery info
+        Experimental = true;
+      };
+      Policy = {
+        AutoEnable = true;
+        ReconnectAttempts = 7;
+        ReconnectIntervals = "1,2,4,8,16,32,64";
+      };
+    };
   };
   hardware.i2c.enable = true;
   hardware.graphics.enable = true;
