@@ -87,6 +87,7 @@
     podman-desktop
     vscode
     kdePackages.dolphin
+    libreoffice
 
     podman
     plover

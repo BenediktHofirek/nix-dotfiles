@@ -56,4 +56,23 @@
   home.packages = with pkgs; [
     kitty-themes
   ];
+
+  xdg.desktopEntries.nvim-kitty = {
+    name = "Neovim (kitty)";
+    exec = "${pkgs.kitty}/bin/kitty -e nvim %F";
+    mimeType =  [
+      "text/plain"
+      "text/markdown"
+      "text/x-shellscript"
+      "text/x-python"
+      "text/x-csrc"
+      "application/json"
+      "application/x-yaml"
+      "application/toml"
+      "application/x-nix"
+    ];
+    terminal = false;
+    categories = [ "Utility" "TextEditor" ];
+  };
+
 }
