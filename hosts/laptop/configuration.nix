@@ -43,6 +43,5 @@
     p2.window = 0.002;
     p1.limit = 85;
     p1.window = 28.0;
-    temp = -20;
   };
 }

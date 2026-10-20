@@ -223,9 +223,7 @@ return {
         },
       },
     },
-  }, -- enable LSP
-  { 'williamboman/mason.nvim' }, -- simple to language server installer
-  { 'williamboman/mason-lspconfig.nvim' },
+  },
 
   { 'RRethy/vim-illuminate' },
   { 'onsails/lspkind.nvim' },

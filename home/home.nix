@@ -72,18 +72,6 @@
     man-pages
     tree
 
-    # Programming languages and toolchains
-    rustc
-    cargo
-    perl
-    php
-    go
-    lua
-    gcc
-    nodejs
-    python3
-    uv
-
     # Apps
     google-chrome
     firefox
@@ -99,6 +87,64 @@
     slurp
     wl-gammarelay-rs
 
+    # Programming languages and toolchains
+    rustc
+    cargo
+    perl
+    php
+    go
+    lua
+    gcc
+    nodejs
+    python3
+    uv
+
+    # Lua
+    lua-language-server
+    stylua
+
+    # Go
+    gopls
+    gotools
+    templ
+
+    # Python
+    python313Packages.python-lsp-server
+    ruff
+    mypy
+
+    # Rust
+    rust-analyzer
+
+    # Web
+    vscode-langservers-extracted
+    emmet-language-server
+    tailwindcss-language-server
+    vtsls
+    vue-language-server
+    graphql-language-service-cli
+
+    # Docker
+    dockerfile-language-server-nodejs
+    docker-compose-language-service
+
+    # Shell / data
+    bash-language-server
+    yaml-language-server
+
+    # Nix
+    nixd
+    nixfmt
+
+    # Terraform
+    terraform-ls
+    tflint
+
+    # PHP
+    phpactor
+
+    # SQL
+    sqls
   ];
 
   home.sessionVariables = {
