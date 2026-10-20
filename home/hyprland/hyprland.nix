@@ -17,8 +17,8 @@
     "hypr/hyprland.lua".source =
       config.lib.file.mkOutOfStoreSymlink ./hyprland.lua;
 
-    "hypr/hyprland-config".source =
-      config.lib.file.mkOutOfStoreSymlink ./hyprland-config;
+    "hypr/config".source =
+      config.lib.file.mkOutOfStoreSymlink ./config;
 
     # Ensure xdg-desktop-portal-hyprland has its config file set up:
     "hypr/xdph.conf".text = ''
