@@ -1,78 +1,73 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  cfg = config.hardware.intel.cpuTuning;
+  # ---- Tunables (conservative values; adjust here only) ----
+  coreMaxKhz   = 4500000;        # core frequency cap, kHz (4.5 GHz)
+  uncoreMaxKhz = 4000000;        # uncore / ring-bus cap, kHz (4.0 GHz)
+  epp          = "balance_power"; # "power" is even cooler
+  tempTarget   = 80;             # throttle at 80°C (TjMax 100 - 20). Absolute value, NOT an offset.
+  pl1          = { limit = 25; window = 28; };      # sustained watts / seconds
+  pl2          = { limit = 35; window = 0.002; };   # burst watts / seconds
+  requireUncoreInterface = true; # fail loudly if the uncore cap can't be applied
 in
 {
-  options.hardware.intel.cpuTuning = {
-    enable = lib.mkEnableOption "Intel CPU/uncore frequency tuning";
+  # Needed by undervolt to access the MSRs
+  boot.kernelModules = [ "msr" ];
 
-    uncoreMaxFreqKhz = lib.mkOption {
-      type = lib.types.nullOr lib.types.int;
-      default = null;
-      example = 4000000;
-      description = ''
-        Maximum Intel uncore/ring-bus frequency in kHz.
-        Applied to every detected package/die under
-        /sys/devices/system/cpu/intel_uncore_frequency.
-      '';
-    };
-
-    epp = lib.mkOption {
-      type = lib.types.nullOr (lib.types.enum [
-        "performance" "balance_performance" "balance_power" "power"
-      ]);
-      default = null;
-      example = "balance_power";
-      description = "Intel Energy Performance Preference for every CPU.";
-    };
-
-    requireUncoreInterface = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        Fail the unit if the Intel uncore-frequency sysfs interface is missing.
-        Useful when the cap is mandatory; leave false on heterogeneous hardware.
-      '';
-    };
+  # ---- Core frequency governor and cap ----
+  powerManagement = {
+    cpuFreqGovernor = "powersave";
+    cpufreq.max = coreMaxKhz;
   };
 
-  config = lib.mkIf cfg.enable {
-    systemd.services.intel-cpu-tuning = {
-      description = "Apply Intel CPU EPP and uncore frequency limits";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "systemd-modules-load.service" ];
-      wants = [ "systemd-modules-load.service" ];
+  # ---- Power limits + thermal throttle point ----
+  services.undervolt = {
+    enable = true;
+    useTimer = true;
+    temp = tempTarget;
+    p1 = pl1;
+    p2 = pl2;
+  };
 
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        ExecStart = pkgs.writeShellScript "intel-cpu-tuning" ''
-          set -euo pipefail
+  # ---- Optional: turbo off (biggest heat reduction).
+  systemd.tmpfiles.rules = [
+    "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
+  ];
 
-          ${lib.optionalString (cfg.uncoreMaxFreqKhz != null) ''
-            uncore_dir=/sys/devices/system/cpu/intel_uncore_frequency
+  # ---- EPP + uncore frequency cap ----
+  systemd.services.intel-cpu-tuning = {
+    description = "Apply Intel CPU EPP and uncore frequency limits";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "systemd-modules-load.service" ];
+    wants = [ "systemd-modules-load.service" ];
 
-            if [[ ! -d "$uncore_dir" ]]; then
-              ${if cfg.requireUncoreInterface
-                then ''echo "Intel uncore frequency sysfs interface not found" >&2; exit 1''
-                else ''echo "Intel uncore frequency sysfs interface not found; skipping"''}
-            else
-              for die in "$uncore_dir"/package_*_die_*; do
-                [[ -f "$die/max_freq_khz" ]] || continue
-                echo ${toString cfg.uncoreMaxFreqKhz} > "$die/max_freq_khz"
-              done
-            fi
-          ''}
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = pkgs.writeShellScript "intel-cpu-tuning" ''
+        set -euo pipefail
 
-          ${lib.optionalString (cfg.epp != null) ''
-            shopt -s nullglob
-            for epp in /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; do
-              echo ${cfg.epp} > "$epp"
-            done
-          ''}
-        '';
-      };
+        # Energy Performance Preference on every CPU
+        for f in /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; do
+          if [[ -e "$f" ]]; then
+            echo ${epp} > "$f"
+          fi
+        done
+
+        # Uncore / ring-bus frequency cap on every package/die
+        uncore_dir=/sys/devices/system/cpu/intel_uncore_frequency
+
+        if [[ ! -d "$uncore_dir" ]]; then
+          echo "intel_uncore_frequency interface not found" >&2
+          ${if requireUncoreInterface then "exit 1" else "exit 0"}
+        fi
+
+        for d in "$uncore_dir"/*/; do
+          if [[ -e "$d/max_freq_khz" ]]; then
+            echo ${toString uncoreMaxKhz} > "$d/max_freq_khz"
+          fi
+        done
+      '';
     };
   };
 }
