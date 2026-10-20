@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "modules-left": [],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["hyprland/submap", "group/volume", "battery", "bluetooth", "network", "cpu", "memory"],
     "hyprland/window": {
@@ -55,7 +55,7 @@
           "today": "<span color='#75f1fa'><b>{}</b></span>"
         }
       },
-      "on-click": "exec chromium --app=https://calendar.google.com"
+      "on-click": "exec google-chrome --app=https://calendar.google.com"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",

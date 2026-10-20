@@ -7,12 +7,12 @@
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 20px;
+  font-family: Caskaydia Nerd Font Mono;
+  font-size: 18px;
 }
 
 window#waybar {
-  background-color: @dark-9;
+  background-color: transparent;
   color: white;
 }
 

@@ -79,9 +79,11 @@
     tree
     direnv
     nix-direnv
+    killall
 
     # Apps
     google-chrome
+    chromium
     firefox
     slack
     podman-desktop
