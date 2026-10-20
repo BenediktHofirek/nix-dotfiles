@@ -1,6 +1,7 @@
 local constants = require("constants")
 
 local command_mod = constants.command_mod
+local displays = constants.displays
 
 -- Helpers
 
@@ -126,7 +127,7 @@ repeat_bind(
 -- External monitor brightness
 
 local function setup_ddc_brightness(display_number, up_key, down_key)
-    local bus = constants.displays[display_number].bus
+    local bus = displays[display_number].bus
 
     repeat_command(up_key, ddc_brightness_up(bus))
     repeat_command(down_key, ddc_brightness_down(bus))
@@ -139,12 +140,17 @@ setup_ddc_brightness(3, "I", "H")
 
 -- Workspace switching and window movement
 
+-- Move focus to monitor
+hl.bind(command_mod .. " + " .. "J", hl.dsp.focus({ monitor = displays[1].output }))
+hl.bind(command_mod .. " + " .. "K", hl.dsp.focus({ monitor = displays[2].output }))
+hl.bind(command_mod .. " + " .. "L", hl.dsp.focus({ monitor = displays[3].output }))
+
 local function workspace_for_key(display_number, key)
     return display_number * 10 + key
 end
 
 for display_number = 1, 3 do
-    local display = constants.displays[display_number]
+    local display = displays[display_number]
 
     for key = 0, 9 do
         local target = workspace_for_key(display_number, key)
