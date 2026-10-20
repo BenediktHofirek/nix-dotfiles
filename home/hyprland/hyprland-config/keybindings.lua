@@ -97,8 +97,8 @@ bind_command("N", exec("systemctl reboot"))
 
 bind_command("D", exec("hyprshot -m region"))
 bind_command("E", exec("playerctl play-pause"))
-bind_command("Q", exec("rfkill toggle bluetooth"))
-bind_command("Z", exec(scripts .. "/toggle-wifi.py"))
+bind_command("Q", exec(scripts .. "/bluetooth-toggle.sh"))
+bind_command("Z", exec(scripts .. "/wifi-toggle.py"))
 
 -- Volume
 
@@ -149,8 +149,7 @@ local function workspace_for_key(display_number, key)
     return display_number * 10 + key
 end
 
-for display_number = 1, 3 do
-    local display = displays[display_number]
+for display_number, display in ipairs(displays) do
 
     for key = 0, 9 do
         local target = workspace_for_key(display_number, key)

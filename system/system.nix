@@ -12,6 +12,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.tmp.cleanOnBoot = true;
 
   boot.kernelModules = [
     "i2c-dev"
@@ -36,12 +37,11 @@
       ];
     };
 
-    # GC handled with nh
-    # gc = {
-    #  automatic = true;
-    #  dates = "weekly"; # Runs weekly (uses systemd timer)
-    #  options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
-    #};
+    gc = {
+     automatic = true;
+     dates = "weekly"; # Runs weekly (uses systemd timer)
+     options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
+    };
   };
 
   # Set keyboard layout for Console / TTY

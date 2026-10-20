@@ -3,15 +3,25 @@
 # requires-python = ">=3.10"
 # dependencies = [
 #     "tplinkrouterc6u",
+#     "sopsy",
 # ]
 # ///
 
 import subprocess
+from pathlib import Path
+from sopsy import Sops
 from tplinkrouterc6u import TplinkRouterProvider, Connection
 
 ROUTER_IP = 'http://192.168.1.1'
-PASSWORD = 'test'
 
+# 1. Initialize Sops with the path to your encrypted file (Path.expanduser handles the ~)
+secrets_path = Path("~/dotfiles/secrets/secrets.yaml").expanduser()
+sops = Sops(secrets_path)
+
+# 2. Extract the specific password directly
+PASSWORD = sops.get("wifi_password")
+
+# 3. Connect to the router and toggle Wi-Fi
 client = TplinkRouterProvider.get_client(ROUTER_IP, PASSWORD)
 
 client.authorize()
