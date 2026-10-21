@@ -14,7 +14,7 @@
     mouse = true;
     keyMode = "vi";
     baseIndex = 1;
-    aggressiveResize = true;
+    aggressiveResize = false;
     focusEvents = true;
 
     extraConfig = builtins.readFile ./tmux.conf;

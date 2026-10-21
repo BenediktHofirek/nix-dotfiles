@@ -22,6 +22,7 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
+      start_as = "normal";
       window_padding_width = 5;
       hide_window_decorations = true;
       background_opacity = 1.0;
