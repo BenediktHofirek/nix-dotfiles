@@ -80,6 +80,7 @@
     direnv
     nix-direnv
     killall
+    entr
 
     # Apps
     google-chrome

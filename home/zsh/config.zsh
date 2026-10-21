@@ -63,6 +63,5 @@ alias e='eza'
 # Nvim
 alias n='nvim'
 
-# NixOS and Home Manager rebuilds
-alias ns='sudo nixos-rebuild switch --flake ~/dotfiles#$HOSTNAME'
-alias hs='home-manager switch --flake ~/dotfiles#$HOSTNAME'
+# Steno
+alias stenodev='find ~/steno-dictionary/steno -name "*.steno" | entr -c ~/steno-dictionary/scripts/checker/target/release/checker'

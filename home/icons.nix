@@ -24,11 +24,4 @@
       size = 24;
     };
   };
-
-  # 4. Configure Qt Apps to mirror the GTK Icon/Style Theme
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style.name = "adwaita-dark";
-  };
 }

@@ -19,6 +19,9 @@
   home.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    # Prevent error message loop
+    QT_LOGGING_RULES = "qt.qpa.wayland.textinput.warning=false";
+    # QT_WAYLAND_DISABLE_TEXT_INPUT = "1";
   };
 
   # 3. Ensure required Qt packages are installed in user environment
