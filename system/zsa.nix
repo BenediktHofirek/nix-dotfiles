@@ -30,7 +30,7 @@
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE="0666", GROUP="plugdev"
   '';
 
-  users.groups.plugdev = {};
+  users.groups.plugdev = { };
 
   users.users.${username}.extraGroups = [ "plugdev" ];
 }

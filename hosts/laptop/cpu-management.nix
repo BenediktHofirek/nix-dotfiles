@@ -2,12 +2,18 @@
 
 let
   # ---- Tunables (conservative values; adjust here only) ----
-  coreMaxKhz   = 4500000;        # core frequency cap, kHz (4.5 GHz)
-  uncoreMaxKhz = 4000000;        # uncore / ring-bus cap, kHz (4.0 GHz)
-  epp          = "balance_power"; # "power" is even cooler
-  tempTarget   = 75;             # throttle at 75°C
-  pl1 = { limit = 55; window = 28; };
-  pl2 = { limit = 65; window = 0.002; };
+  coreMaxKhz = 4500000; # core frequency cap, kHz (4.5 GHz)
+  uncoreMaxKhz = 4000000; # uncore / ring-bus cap, kHz (4.0 GHz)
+  epp = "balance_power"; # "power" is even cooler
+  tempTarget = 75; # throttle at 75°C
+  pl1 = {
+    limit = 55;
+    window = 28;
+  };
+  pl2 = {
+    limit = 65;
+    window = 0.002;
+  };
   requireUncoreInterface = true; # fail loudly if the uncore cap can't be applied
 in
 {

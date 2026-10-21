@@ -7,6 +7,6 @@
     wireplumber.enable = true;
   };
 
-  security.rtkit.enable = true;   # lets PipeWire get realtime priority
-  services.pulseaudio.enable = false;  
+  security.rtkit.enable = true; # lets PipeWire get realtime priority
+  services.pulseaudio.enable = false;
 }

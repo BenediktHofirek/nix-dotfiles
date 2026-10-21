@@ -1,6 +1,9 @@
 {
   systemd.services.fan-curve = {
-    wantedBy = [ "multi-user.target" "post-resume.target" ];
+    wantedBy = [
+      "multi-user.target"
+      "post-resume.target"
+    ];
     after = [ "post-resume.target" ];
     serviceConfig.Type = "oneshot";
     script = ''

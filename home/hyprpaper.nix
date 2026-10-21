@@ -6,11 +6,11 @@
       splash = false;
       ipc = true;
 
-       wallpaper = {
-          monitor = "";
-          path = "${../wallpapers/stars.jpg}";
-          fit_mode = "cover";
-        };
+      wallpaper = {
+        monitor = "";
+        path = "${../wallpapers/stars.jpg}";
+        fit_mode = "cover";
+      };
     };
   };
 }

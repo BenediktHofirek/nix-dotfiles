@@ -14,11 +14,9 @@
   };
 
   xdg.configFile = {
-    "hypr/hyprland.lua".source =
-      config.lib.file.mkOutOfStoreSymlink ./hyprland.lua;
+    "hypr/hyprland.lua".source = config.lib.file.mkOutOfStoreSymlink ./hyprland.lua;
 
-    "hypr/config".source =
-      config.lib.file.mkOutOfStoreSymlink ./config;
+    "hypr/config".source = config.lib.file.mkOutOfStoreSymlink ./config;
 
     # Ensure xdg-desktop-portal-hyprland has its config file set up:
     "hypr/xdph.conf".text = ''

@@ -58,8 +58,32 @@
           interval = 60;
           format = "{capacity}% {icon}";
           format-icons = {
-            default = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-            charging = [ "󰢟" "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅" ];
+            default = [
+              "󰂎"
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
+            charging = [
+              "󰢟"
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
           };
         };
 
@@ -115,7 +139,10 @@
           format = "{volume}% {icon}";
           format-muted = "";
           format-icons = {
-            default = [ "" "" ];
+            default = [
+              ""
+              ""
+            ];
           };
           scroll-step = 1;
           ignored-sinks = [ "Easy Effects Sink" ];

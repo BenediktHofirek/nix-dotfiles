@@ -1,8 +1,8 @@
 { username, ... }:
 
 {
-  users.users.${username}.extraGroups = [ 
-    "dialout" 
+  users.users.${username}.extraGroups = [
+    "dialout"
     "input"
   ];
 

@@ -2,7 +2,6 @@
   inputs,
   pkgs,
   username,
-  hostname,
   ...
 }:
 {
@@ -20,146 +19,147 @@
   services.playerctld.enable = true;
 
   home.packages = with pkgs; [
-    # Nix packages
-    comma
-    nix-output-monitor
-    nix-tree
-    nix-diff
-    nixfmt
-    nixd
-
-    # Hyprland + utils
-    wl-clipboard
-    waybar
-    hyprpicker
-    hyprlauncher
-    libnotify
-    ddcutil
-    pavucontrol
-
-    # Bluetooth
-    blueman
-    bluetui
-
-    # General system packages
+    # ── Core CLI ──────────────────────────────
     git
     vim
     nano
     wget
     curl
+    openssl
+    tree
+    lsof
+    killall
+    man-pages
+    tealdeer
 
-    # Terminal db client
-    rainfrog
-    harlequin
-    dblab
-
-    # Shell enhancement
-    bat
-    fd
-    ripgrep
+    # ── Search & text processing ──────────────
     jq
     yq-go
+    procs
+    httpie
+
+    # ── Filesystem ────────────────────────────
+    dust
+    fd
+    bat
+    ripgrep
+
+    # ── System monitoring ─────────────────────
+    htop
+    btop
     bottom
     gtop
     nvitop
-    htop
-    btop
-    watchexec
-    hyperfine
-    tokei
-    tealdeer
-    dust
-    procs
-    httpie
-    just
-    openssl
-    lsof
-    gnumake
-    man-pages
-    tree
-    direnv
-    nix-direnv
-    killall
-    entr
     lm_sensors
     powertop
     powerstat
 
-    # Apps
-    google-chrome
-    chromium
-    firefox
-    slack
-    podman-desktop
-    vscode
-    kdePackages.dolphin
-    libreoffice
+    # ── Dev workflow ──────────────────────────
+    just
+    gnumake
+    direnv
+    nix-direnv
+    watchexec
+    entr
+    hyperfine
+    tokei
 
+    # ── Nix tooling ───────────────────────────
+    comma
+    nix-output-monitor
+    nix-tree
+    nix-diff
+
+    # ── Containers ────────────────────────────
     podman
     podman-compose
-    brightnessctl
-    pamixer
+    podman-desktop
+
+    # ── Database clients ──────────────────────
+    rainfrog
+    harlequin
+    dblab
+
+    # ── Wayland desktop ───────────────────────
+    waybar
+    hyprlauncher
+    hyprpicker
+    wl-clipboard
+    wl-gammarelay-rs
+    libnotify
     grim
     slurp
-    wl-gammarelay-rs
 
-    # Programming languages and toolchains
+    # ── Hardware controls ─────────────────────
+    brightnessctl
+    ddcutil
+    pamixer
+    pavucontrol
+    blueman
+    bluetui
+
+    # ── Browsers ──────────────────────────────
+    firefox
+    google-chrome
+    chromium
+
+    # ── GUI apps ──────────────────────────────
+    vscode
+    slack
+    libreoffice
+    kdePackages.dolphin
+
+    # ── Lang: Nix ─────────────────────────────
+    nixd
+    nixfmt
+
+    # ── Lang: Rust ────────────────────────────
     rustc
     cargo
-    perl
-    php
+    rust-analyzer
+
+    # ── Lang: Go ──────────────────────────────
     go
-    lua
-    gcc
-    nodejs
-    python3
-    uv
-
-    # Lua
-    lua-language-server
-    stylua
-
-    # Go
     gopls
     gotools
     templ
 
-    # Python
+    # ── Lang: Python ──────────────────────────
+    python3
+    uv
     python313Packages.python-lsp-server
     ruff
     mypy
 
-    # Rust
-    rust-analyzer
-
-    # Web
-    vscode-langservers-extracted
-    emmet-language-server
-    tailwindcss-language-server
+    # ── Lang: JS / Web ────────────────────────
+    nodejs
     vtsls
     vue-language-server
+    tailwindcss-language-server
+    emmet-language-server
+    vscode-langservers-extracted
     graphql-language-service-cli
 
-    # Docker
-    dockerfile-language-server
-    docker-compose-language-service
+    # ── Lang: Lua ─────────────────────────────
+    lua
+    lua-language-server
+    stylua
 
-    # Shell / data
-    bash-language-server
-    yaml-language-server
-
-    # Nix
-    nixd
-    nixfmt
-
-    # Terraform
-    terraform-ls
-    tflint
-
-    # PHP
+    # ── Lang: PHP ─────────────────────────────
+    php
     phpactor
 
-    # SQL
+    # ── Lang: C / Perl ────────────────────────
+    gcc
+    perl
+
+    # ── Infra & config languages ──────────────
+    terraform-ls
+    tflint
+    dockerfile-language-server
+    docker-compose-language-service
+    bash-language-server
+    yaml-language-server
     sqls
   ];
 

@@ -4,10 +4,10 @@
   # 1. Enable Qt theme management
   qt = {
     enable = true;
-    
+
     # Platform theme to use (qtct or kde/gnome)
     platformTheme.name = "qt6ct";
-    
+
     # Widget style
     style = {
       name = "breeze";

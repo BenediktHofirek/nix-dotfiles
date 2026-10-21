@@ -61,7 +61,7 @@
   xdg.desktopEntries.nvim-kitty = {
     name = "Neovim (kitty)";
     exec = "${pkgs.kitty}/bin/kitty -e nvim %F";
-    mimeType =  [
+    mimeType = [
       "text/plain"
       "text/markdown"
       "text/x-shellscript"
@@ -73,7 +73,10 @@
       "application/x-nix"
     ];
     terminal = false;
-    categories = [ "Utility" "TextEditor" ];
+    categories = [
+      "Utility"
+      "TextEditor"
+    ];
   };
 
 }

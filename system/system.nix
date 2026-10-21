@@ -38,9 +38,9 @@
     };
 
     gc = {
-     automatic = true;
-     dates = "weekly"; # Runs weekly (uses systemd timer)
-     options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
+      automatic = true;
+      dates = "weekly"; # Runs weekly (uses systemd timer)
+      options = "--delete-older-than 14d"; # Keeps generations from the last 14 days
     };
   };
 
@@ -84,8 +84,8 @@
   # Screensharing, notifications
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ 
-      xdg-desktop-portal-hyprland 
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
     ];
   };
 
@@ -113,4 +113,3 @@
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 }
-

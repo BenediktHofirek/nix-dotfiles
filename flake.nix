@@ -96,6 +96,7 @@
                   modules = [
                     (import-tree ./home)
                     inputs.plover-flake.homeManagerModules.plover
+                    inputs.nix-index-database.homeModules.default
                   ]
                   ++ lib.optional (builtins.pathExists ./hosts/${hostname}/home.nix) ./hosts/${hostname}/home.nix;
                 };

@@ -4,8 +4,8 @@
 }:
 {
   # Cpu configuration
-  imports = [ 
-    ./cpu-management.nix 
+  imports = [
+    ./cpu-management.nix
     ./fan-management.nix
   ];
 
@@ -15,8 +15,8 @@
     nvidiaSettings = true;
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = false;  # only valid with offload mode
-    open = true;                          # fine for Ada (RTX 40xx)
+    powerManagement.finegrained = false; # only valid with offload mode
+    open = true; # fine for Ada (RTX 40xx)
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
