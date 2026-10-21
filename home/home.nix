@@ -160,7 +160,6 @@
   ];
 
   home.sessionVariables = {
-    HOSTNAME = hostname;
     # Combine Nix profile (icons), system/user Flatpak paths (fuzzel)
     XDG_DATA_DIRS = ''
       $HOME/.nix-profile/share:\
