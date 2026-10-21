@@ -93,7 +93,6 @@
 
     podman
     podman-compose
-    plover
     brightnessctl
     pamixer
     grim

@@ -27,6 +27,8 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    plover-flake.url = "github:openstenoproject/plover-flake";
   };
 
   outputs =
@@ -93,6 +95,7 @@
                   extraSpecialArgs = { inherit inputs hostname username; };
                   modules = [
                     (import-tree ./home)
+                    inputs.plover-flake.homeManagerModules.plover
                   ]
                   ++ lib.optional (builtins.pathExists ./hosts/${hostname}/home.nix) ./hosts/${hostname}/home.nix;
                 };
