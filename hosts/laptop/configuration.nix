@@ -4,7 +4,10 @@
 }:
 {
   # Cpu configuration
-  imports = [ ./cpu-management.nix ];
+  imports = [ 
+    ./cpu-management.nix 
+    ./fan-management.nix
+  ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 

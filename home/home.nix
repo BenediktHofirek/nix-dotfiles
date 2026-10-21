@@ -81,6 +81,7 @@
     nix-direnv
     killall
     entr
+    lm_sensors
 
     # Apps
     google-chrome

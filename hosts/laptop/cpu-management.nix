@@ -5,9 +5,9 @@ let
   coreMaxKhz   = 4500000;        # core frequency cap, kHz (4.5 GHz)
   uncoreMaxKhz = 4000000;        # uncore / ring-bus cap, kHz (4.0 GHz)
   epp          = "balance_power"; # "power" is even cooler
-  tempTarget   = 80;             # throttle at 80°C (TjMax 100 - 20). Absolute value, NOT an offset.
-  pl1          = { limit = 25; window = 28; };      # sustained watts / seconds
-  pl2          = { limit = 35; window = 0.002; };   # burst watts / seconds
+  tempTarget   = 75;             # throttle at 75°C
+  pl1 = { limit = 55; window = 28; };
+  pl2 = { limit = 65; window = 0.002; };
   requireUncoreInterface = true; # fail loudly if the uncore cap can't be applied
 in
 {
@@ -29,10 +29,10 @@ in
     p2 = pl2;
   };
 
-  # ---- Optional: turbo off (biggest heat reduction).
-  systemd.tmpfiles.rules = [
-    "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
-  ];
+  # ---- turbo off - not needed, handled by frequency cap
+  #systemd.tmpfiles.rules = [
+  #  "w /sys/devices/system/cpu/intel_pstate/no_turbo - - - - 1"
+  #];
 
   # ---- EPP + uncore frequency cap ----
   systemd.services.intel-cpu-tuning = {
