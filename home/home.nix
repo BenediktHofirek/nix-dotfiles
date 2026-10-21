@@ -82,6 +82,8 @@
     killall
     entr
     lm_sensors
+    powertop
+    powerstat
 
     # Apps
     google-chrome
