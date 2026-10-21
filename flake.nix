@@ -4,12 +4,13 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    import-tree.url = "github:vic/import-tree";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
-    import-tree.url = "github:vic/import-tree";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -21,14 +22,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    plover-flake.url = "github:openstenoproject/plover-flake";
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    plover-flake = {
+      url = "github:openstenoproject/plover-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -97,6 +105,7 @@
                     (import-tree ./home)
                     inputs.plover-flake.homeManagerModules.plover
                     inputs.nix-index-database.homeModules.default
+                    inputs.hunk.homeManagerModules.default
                   ]
                   ++ lib.optional (builtins.pathExists ./hosts/${hostname}/home.nix) ./hosts/${hostname}/home.nix;
                 };

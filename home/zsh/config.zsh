@@ -1,3 +1,6 @@
+# Prevent Ctrl+d from closing shell
+setopt ignore_eof
+
 # Preferred editor for local and remote sessions
 if [[ -n "$SSH_CONNECTION" ]]; then
   export EDITOR='vim'
