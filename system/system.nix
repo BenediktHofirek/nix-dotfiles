@@ -65,6 +65,10 @@
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite
+
+    # For initial secret scaffolding
+    sops
+    age
   ];
 
   programs.hyprland = {
