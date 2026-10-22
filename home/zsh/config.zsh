@@ -70,4 +70,10 @@ alias n='nvim'
 alias stenodev='find ~/steno-dictionary/steno -name "*.steno" | entr -c ~/steno-dictionary/scripts/checker/target/release/checker'
 
 # Hunk
-alias hunk='hunk show'
+h() {
+    if [[ $# -eq 0 ]]; then
+        hunk show
+    else
+        hunk "$@"
+    fi
+}

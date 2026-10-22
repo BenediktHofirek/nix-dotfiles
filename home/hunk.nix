@@ -5,7 +5,7 @@
     settings = {
       theme = "min-light";
       mode = "split";
-      sidebar = "auto";
+      sidebar = true;
       line_numbers = true;
       tab_width = 4;
       watch = true;
