@@ -1,5 +1,3 @@
-{ username, hostname, ... }:
-
 {
   programs.zsh = {
     enable = true;

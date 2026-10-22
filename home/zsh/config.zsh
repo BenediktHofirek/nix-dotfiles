@@ -68,3 +68,6 @@ alias n='nvim'
 
 # Steno
 alias stenodev='find ~/steno-dictionary/steno -name "*.steno" | entr -c ~/steno-dictionary/scripts/checker/target/release/checker'
+
+# Hunk
+alias hunk='hunk show'
