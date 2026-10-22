@@ -13,6 +13,7 @@
   home.homeDirectory =
     if pkgs.stdenv.hostPlatform.isDarwin then "/Users/${username}" else "/home/${username}";
   home.stateVersion = "26.05";
+  home.backupFileExtension = "backup";
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 

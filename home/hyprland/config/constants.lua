@@ -42,7 +42,16 @@ local displays = {
         mode = "2560x1600@60",
         position = "0x600",
         scale = 1.6,
-    }
+    },
+
+    -- [3] = {
+    --     output = "DP-3",
+    --     mod = "SUPER",
+    --     bus = 15,
+    --     mode = "2200x1650@38",
+    --     position = "0x600",
+    --     scale = 1.47,
+    -- }
   }
 }
 

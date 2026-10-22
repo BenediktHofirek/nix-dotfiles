@@ -1,7 +1,7 @@
 {
   programs.gh-dash = {
     enable = true;
-    
+
     settings = {
       prSections = [
         {
@@ -36,6 +36,10 @@
         };
         prsScanLimit = 50;
         issuesScanLimit = 50;
+      };
+
+      pager = {
+        diff = "tuicr";
       };
     };
   };
