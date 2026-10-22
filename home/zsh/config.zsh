@@ -8,12 +8,6 @@ else
   export EDITOR='nvim'
 fi
 
-if [[ -n "$TMUX" ]]; then
-  alias t="nvim -c ':terminal'"
-else
-  alias t='tmux'
-fi
-
 # SSH agent
 # Preserve a forwarded SSH agent when one is already configured.
 export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:-${XDG_RUNTIME_DIR}/ssh-agent.socket}"
@@ -69,11 +63,11 @@ alias n='nvim'
 # Steno
 alias stenodev='find ~/steno-dictionary/steno -name "*.steno" | entr -c ~/steno-dictionary/scripts/checker/target/release/checker'
 
-# Hunk
-h() {
+# Tuicr
+t() {
     if [[ $# -eq 0 ]]; then
-        hunk show
+        tuicr -r @-
     else
-        hunk "$@"
+        tuicr "$@"
     fi
 }

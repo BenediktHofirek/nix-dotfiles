@@ -3,7 +3,6 @@
   pkgs,
   config,
   username,
-  hostname,
   ...
 }:
 
@@ -27,10 +26,22 @@ in
     defaultSopsFile = ../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
 
-    secrets.ssh_key = {
-      owner = username;
-      mode = "0400";
-      path = "${home}/.ssh/id_rsa";
+    secrets = {
+      ssh_key = {
+        owner = username;
+        mode = "0400";
+        path = "${home}/.ssh/id_rsa";
+      };
+
+      wifi_password = {
+        owner = username;
+        mode = "0400";
+      };
+
+      github_oauth_token = {
+        owner = username;
+        mode = "0400";
+      };
     };
   };
 

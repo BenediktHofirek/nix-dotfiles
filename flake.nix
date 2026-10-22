@@ -27,11 +27,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hunk = {
-      url = "github:modem-dev/hunk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     plover-flake = {
       url = "github:openstenoproject/plover-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -105,7 +100,6 @@
                     (import-tree ./home)
                     inputs.plover-flake.homeManagerModules.plover
                     inputs.nix-index-database.homeModules.default
-                    inputs.hunk.homeManagerModules.default
                   ]
                   ++ lib.optional (builtins.pathExists ./hosts/${hostname}/home.nix) ./hosts/${hostname}/home.nix;
                 };

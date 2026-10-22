@@ -31,6 +31,7 @@
     killall
     man-pages
     tealdeer
+    unzip
 
     # ── Search & text processing ──────────────
     jq
